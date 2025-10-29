@@ -6,6 +6,7 @@ using System.Windows.Input;
 =======
 using WpfApp3.Container;
 using lab_3; 
+using lab_3; 
 >>>>>>> de91eb4eebd989468b3587353b2e3eefcf00b76c
 
 namespace WpfApp3.ViewModels

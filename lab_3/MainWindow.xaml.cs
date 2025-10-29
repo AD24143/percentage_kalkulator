@@ -66,6 +66,7 @@ namespace lab_3
         {
             // Button click is handled by Command binding
             // This handler is kept for any additional logic if needed
+
         }
     }
 }
