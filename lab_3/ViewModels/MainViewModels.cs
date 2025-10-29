@@ -39,7 +39,7 @@ namespace WpfApp3.ViewModels
             PureSubstanceVolumeResult = "";
             ErrorMessage = "";
 
-            CalculateCommand = new Errors(Calculate, CanCalculate);
+            CalculateCommand = new Errors(Calculate);
         }
 
         public List<Container> StandardContainers => _standardContainers;

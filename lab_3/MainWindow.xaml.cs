@@ -64,8 +64,17 @@ namespace lab_3
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Button click is handled by Command binding
-            // This handler is kept for any additional logic if needed
+            if (DataContext is WpfApp3.ViewModels.MainViewModel vm)
+            {
+                if (vm.CalculateCommand?.CanExecute(null) ?? true)
+                {
+                    vm.CalculateCommand.Execute(null);
+                }
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }
