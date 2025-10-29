@@ -1,12 +1,108 @@
-﻿<Window x:Class="lab_3.MainWindow"
+﻿<Window x:Class="WpfApp3.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:lab_3"
+        xmlns:local="clr-namespace:WpfApp3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Substance Volume Calculator" Height="550" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Container Selection -->
+        <TextBlock Grid.Row="0" Text="Select Container:" FontWeight="Bold" Margin="0,10,0,5"/>
+        <ComboBox Grid.Row="1" 
+                  ItemsSource="{Binding StandardContainers}"
+                  SelectedItem="{Binding SelectedContainer}"/>
+
+        <!-- Custom Volume Input -->
+        <TextBlock Grid.Row="2" Text="Custom Volume (ml):" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBox Grid.Row="3" 
+                 Text="{Binding CustomVolume, UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="{Binding IsCustomVolumeEnabled}"
+                 PreviewTextInput="NumericOnly_PreviewTextInput"/>
+
+        <!-- Percentage Content -->
+        <TextBlock Grid.Row="4" Text="Percentage Content (%):" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBox Grid.Row="5" 
+                 Text="{Binding PercentageContent, UpdateSourceTrigger=PropertyChanged}"
+                 PreviewTextInput="NumericOnly_PreviewTextInput"/>
+
+        <!-- Number of Containers -->
+        <TextBlock Grid.Row="6" Text="Number of Containers:" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBox Grid.Row="7" 
+                 Text="{Binding NumberOfContainers, UpdateSourceTrigger=PropertyChanged}"
+                 PreviewTextInput="IntegerOnly_PreviewTextInput"/>
+
+        <!-- Calculate Button -->
+        <Button Grid.Row="8" 
+                Content="Calculate" 
+                Command="{Binding CalculateCommand}"
+                Margin="0,20,0,10"
+                Padding="20,10"
+                FontSize="14"
+                FontWeight="Bold"
+                Click="Button_Click"/>
+
+        <!-- Results -->
+        <TextBlock Grid.Row="9" 
+                   Text="Result:" 
+                   FontSize="13"
+                   FontWeight="Bold"
+                   Foreground="Pink"
+                   Margin="0,5"/>
+        <TextBlock Grid.Row="10" 
+                   Text="{Binding TotalVolumeResult}" 
+                   FontSize="13"
+                   FontWeight="SemiBold"
+                   Foreground="Blue"
+                   Margin="0,5"/>
+
+        <TextBlock Grid.Row="11" 
+                   Text="{Binding PureSubstanceVolumeResult}" 
+                   FontSize="13"
+                   FontWeight="SemiBold"
+                   Foreground="Blue"
+                   Margin="0,5"/>
+
+        <!-- Error Message -->
+        <TextBlock Grid.Row="12" 
+                   Text="{Binding ErrorMessage}" 
+                   FontSize="12"
+                   FontWeight="SemiBold"
+                   Foreground="Red"
+                   TextWrapping="Wrap"
+                   Margin="0,10,0,0"
+                   VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
