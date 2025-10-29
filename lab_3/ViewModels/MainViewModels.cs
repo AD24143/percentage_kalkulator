@@ -2,22 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-<<<<<<< HEAD
-=======
-using WpfApp3.Container;
-using lab_3; 
-using lab_3; 
->>>>>>> de91eb4eebd989468b3587353b2e3eefcf00b76c
+using lab_3; // Models and Errors
 
 namespace WpfApp3.ViewModels
 {
     public class MainViewModel : BaseViewModel
-    public class MainViewModels : BaseViewModel
     {
         private readonly List<Container> _standardContainers;
         private Container? _selectedContainer;
         private bool _isCustomVolumeEnabled;
-         private string _customVolume = string.Empty;
+        private string _customVolume = string.Empty;
         private string _percentageContent = string.Empty;
         private string _numberOfContainers = string.Empty;
         private string _totalVolumeResult = string.Empty;
@@ -25,16 +19,15 @@ namespace WpfApp3.ViewModels
         private string _errorMessage = string.Empty;
 
         public MainViewModel()
-        public MainViewModels()
         {
-            _standardContainers = new List<Models>
+            _standardContainers = new List<Container>
             {
-                new Models("Wine Glass", 50),
-                new Models("Cup", 250),
-                new Models("Bottle", 500),
-                new Models("Stack", 750),
-                new Models("Laboratory Vessel", 1000),
-                new Models("Custom", 0)
+                new Container("Wine Glass", 50),
+                new Container("Cup", 250),
+                new Container("Bottle", 500),
+                new Container("Stack", 750),
+                new Container("Laboratory Vessel", 1000),
+                new Container("Custom", 0)
             };
 
             SelectedContainer = _standardContainers.First();
@@ -48,9 +41,9 @@ namespace WpfApp3.ViewModels
             CalculateCommand = new Errors(Calculate, CanCalculate);
         }
 
-        public List<Models> StandardContainers => _standardContainers;
+        public List<Container> StandardContainers => _standardContainers;
 
-        public Models? SelectedContainer
+        public Container? SelectedContainer
         {
             get => _selectedContainer;
             set
