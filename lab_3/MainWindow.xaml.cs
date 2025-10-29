@@ -19,6 +19,7 @@ namespace lab_3
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }

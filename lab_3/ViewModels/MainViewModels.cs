@@ -1,13 +1,12 @@
-﻿using lab_3;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using WpfApp3.Models;
+using lab_3; 
 
 namespace WpfApp3.ViewModels
 {
-    public class MainViewModels : BaseViewModels
+    public class MainViewModels : BaseViewModel
     {
         private readonly List<Models> _standardContainers;
         private Models? _selectedContainer;
@@ -19,16 +18,16 @@ namespace WpfApp3.ViewModels
         private string _pureSubstanceVolumeResult = string.Empty;
         private string _errorMessage = string.Empty;
 
-        public MainModels()
+        public MainViewModels()
         {
-            _standardContainers = new List<Container>
+            _standardContainers = new List<Models>
             {
-                new Container("Wine Glass", 50),
-                new Container("Cup", 250),
-                new Container("Bottle", 500),
-                new Container("Stack", 750),
-                new Container("Laboratory Vessel", 1000),
-                new Container("Custom", 0)
+                new Models("Wine Glass", 50),
+                new Models("Cup", 250),
+                new Models("Bottle", 500),
+                new Models("Stack", 750),
+                new Models("Laboratory Vessel", 1000),
+                new Models("Custom", 0)
             };
 
             SelectedContainer = _standardContainers.First();
@@ -39,12 +38,12 @@ namespace WpfApp3.ViewModels
             PureSubstanceVolumeResult = "";
             ErrorMessage = "";
 
-            CalculateCommand = new RelayCommand(Calculate, CanCalculate);
+            CalculateCommand = new Errors(Calculate, CanCalculate);
         }
 
-        public List<Container> StandardContainers => _standardContainers;
+        public List<Models> StandardContainers => _standardContainers;
 
-        public Container? SelectedContainer
+        public Models? SelectedContainer
         {
             get => _selectedContainer;
             set
@@ -122,7 +121,7 @@ namespace WpfApp3.ViewModels
             set => SetProperty(ref _errorMessage, value);
         }
 
-        public RelayCommand CalculateCommand { get; }
+        public Errors CalculateCommand { get; }
 
         private bool CanCalculate()
         {
