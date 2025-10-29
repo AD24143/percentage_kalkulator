@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using WpfApp3.Container;
+using WpfApp3.Containers;
 
 namespace WpfApp3.ViewModels
 {
@@ -12,7 +12,7 @@ namespace WpfApp3.ViewModels
         private readonly List<Container> _standardContainers;
         private Container? _selectedContainer;
         private bool _isCustomVolumeEnabled;
-        private string _customVolume = string.Empty;
+         private string _customVolume = string.Empty;
         private string _percentageContent = string.Empty;
         private string _numberOfContainers = string.Empty;
         private string _totalVolumeResult = string.Empty;
