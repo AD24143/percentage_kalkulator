@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using WpfApp3.Models;
+using WpfApp3.Container;
 
 namespace WpfApp3.ViewModels
 {
-    public class MainViewModels : BaseViewModels
+    public class MainViewModel : BaseViewModel
     {
-        private readonly List<Models> _standardContainers;
-        private Models? _selectedContainer;
+        private readonly List<Container> _standardContainers;
+        private Container? _selectedContainer;
         private bool _isCustomVolumeEnabled;
         private string _customVolume = string.Empty;
         private string _percentageContent = string.Empty;
@@ -19,7 +19,7 @@ namespace WpfApp3.ViewModels
         private string _pureSubstanceVolumeResult = string.Empty;
         private string _errorMessage = string.Empty;
 
-        public MainModels()
+        public MainViewModel()
         {
             _standardContainers = new List<Container>
             {
@@ -39,7 +39,7 @@ namespace WpfApp3.ViewModels
             PureSubstanceVolumeResult = "";
             ErrorMessage = "";
 
-            CalculateCommand = new RelayCommand(Calculate, CanCalculate);
+            CalculateCommand = new Errors(Calculate, CanCalculate);
         }
 
         public List<Container> StandardContainers => _standardContainers;
