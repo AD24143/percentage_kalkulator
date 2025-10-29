@@ -40,59 +40,67 @@
         </Grid.RowDefinitions>
 
         <!-- Container Selection -->
-        <TextBlock Grid.Row="0" Text="Select Container:" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBlock Grid.Row="0" Text="Select Container:" FontWeight="Bold" Margin="0,10,0,0" Foreground="#FF1D1313" VerticalAlignment="Top"/>
         <ComboBox Grid.Row="1" 
                   ItemsSource="{Binding StandardContainers}"
-                  SelectedItem="{Binding SelectedContainer}"/>
+                  SelectedItem="{Binding SelectedContainer}" BorderBrush="#B2329068">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="#FFAE7B7B" Offset="1"/>
+                    <GradientStop Color="#FFC3A0A0" Offset="0.581"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
 
         <!-- Custom Volume Input -->
-        <TextBlock Grid.Row="2" Text="Custom Volume (ml):" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBlock Grid.Row="2" Text="Custom Volume (ml):" FontWeight="Bold" Margin="0,10,0,5" Foreground="#FF1D1313"/>
         <TextBox Grid.Row="3" 
                  Text="{Binding CustomVolume, UpdateSourceTrigger=PropertyChanged}"
                  IsEnabled="{Binding IsCustomVolumeEnabled}"
-                 PreviewTextInput="NumericOnly_PreviewTextInput"/>
+                 PreviewTextInput="NumericOnly_PreviewTextInput" BorderBrush="#FFBFB770"/>
 
         <!-- Percentage Content -->
-        <TextBlock Grid.Row="4" Text="Percentage Content (%):" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBlock Grid.Row="4" Text="Percentage Content (%):" FontWeight="Bold" Margin="0,10,0,5" Foreground="#FF1D1313"/>
         <TextBox Grid.Row="5" 
                  Text="{Binding PercentageContent, UpdateSourceTrigger=PropertyChanged}"
-                 PreviewTextInput="NumericOnly_PreviewTextInput"/>
+                 PreviewTextInput="NumericOnly_PreviewTextInput" BorderBrush="#FFBFB770"/>
 
         <!-- Number of Containers -->
-        <TextBlock Grid.Row="6" Text="Number of Containers:" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBlock Grid.Row="6" Text="Number of Containers:" FontWeight="Bold" Margin="0,10,0,5" Foreground="#FF1D1313"/>
         <TextBox Grid.Row="7" 
                  Text="{Binding NumberOfContainers, UpdateSourceTrigger=PropertyChanged}"
-                 PreviewTextInput="IntegerOnly_PreviewTextInput"/>
+                 PreviewTextInput="IntegerOnly_PreviewTextInput" BorderBrush="#FFBFB770"/>
 
         <!-- Calculate Button -->
         <Button Grid.Row="8" 
                 Content="Calculate" 
                 Command="{Binding CalculateCommand}"
-                Margin="0,20,0,10"
+                Margin="90,40,90,40"
                 Padding="20,10"
                 FontSize="14"
                 FontWeight="Bold"
-                Click="Button_Click"/>
+                Click="Button_Click" Height="38" BorderBrush="#FF55368C" Background="#FF37225D"/>
 
         <!-- Results -->
         <TextBlock Grid.Row="9" 
                    Text="Result:" 
                    FontSize="13"
                    FontWeight="Bold"
-                   Foreground="Pink"
+                   Foreground="#FFFF778F"
                    Margin="0,5"/>
         <TextBlock Grid.Row="10" 
                    Text="{Binding TotalVolumeResult}" 
                    FontSize="13"
                    FontWeight="SemiBold"
-                   Foreground="Blue"
+                   Foreground="#FF0C0C47"
                    Margin="0,5"/>
 
         <TextBlock Grid.Row="11" 
                    Text="{Binding PureSubstanceVolumeResult}" 
                    FontSize="13"
                    FontWeight="SemiBold"
-                   Foreground="Blue"
+                   Foreground="#FF0C0C47"
                    Margin="0,5"/>
 
         <!-- Error Message -->
