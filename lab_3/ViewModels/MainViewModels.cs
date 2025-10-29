@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.Windows.Input;
 using lab_3; // Models and Errors
 
@@ -30,7 +31,7 @@ namespace WpfApp3.ViewModels
                 new Container("Custom", 0)
             };
 
-            SelectedContainer = _standardContainers.First();
+            SelectedContainer = null;
             CustomVolume = "";
             PercentageContent = "";
             NumberOfContainers = "";
@@ -132,12 +133,12 @@ namespace WpfApp3.ViewModels
                 return false;
             }
 
-            if (SelectedContainer.Name == "Custom" && (string.IsNullOrWhiteSpace(CustomVolume) || !double.TryParse(CustomVolume, out var customVol) || customVol <= 0))
+            if (SelectedContainer != null && SelectedContainer.Name == "Custom" && (string.IsNullOrWhiteSpace(CustomVolume) || !double.TryParse(CustomVolume, NumberStyles.Float, CultureInfo.InvariantCulture, out var customVol) || customVol <= 0))
             {
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(PercentageContent) || !double.TryParse(PercentageContent, out var percentage))
+            if (string.IsNullOrWhiteSpace(PercentageContent) || !double.TryParse(PercentageContent, NumberStyles.Float, CultureInfo.InvariantCulture, out var percentage))
             {
                 return false;
             }
@@ -171,7 +172,7 @@ namespace WpfApp3.ViewModels
 
                 if (SelectedContainer?.Name == "Custom")
                 {
-                    if (!double.TryParse(CustomVolume, out containerCapacity) || containerCapacity <= 0)
+                    if (!double.TryParse(CustomVolume, NumberStyles.Float, CultureInfo.InvariantCulture, out containerCapacity) || containerCapacity <= 0)
                     {
                         ErrorMessage = "Custom volume must be a positive number.";
                         return;
@@ -182,7 +183,7 @@ namespace WpfApp3.ViewModels
                     containerCapacity = SelectedContainer?.VolumeMl ?? 0;
                 }
 
-                if (!double.TryParse(PercentageContent, out var percentage))
+                if (!double.TryParse(PercentageContent, NumberStyles.Float, CultureInfo.InvariantCulture, out var percentage))
                 {
                     ErrorMessage = "Percentage content must be a valid number.";
                     return;
